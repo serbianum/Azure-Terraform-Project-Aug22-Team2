@@ -32,9 +32,9 @@ variable "dbname"{
   default = "db-wordpress"
 }
 
-#variable "db_server_name" {
- # default = "mysqlserver-wordpress"
-#}
+variable "db_server_name" {
+ default = "mysqlserver-wordpress"
+}
 
 variable "database_admin_login" {
   default = "wordpress"

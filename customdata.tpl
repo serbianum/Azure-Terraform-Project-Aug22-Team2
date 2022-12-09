@@ -20,10 +20,3 @@ sudo chown -R apache:apache /var/www/html/
 sudo systemctl start httpd
 sudo systemctl enable httpd
 
-#DB_SERVER_NAME="team@sql-whynot"
-
-
-#export WORDPRESS_DB_HOST= "${DB_SERVER_NAME}.mysql.database.azure.com"
-#export WORDPRESS_DB_USER= "wordpress@${DB_SERVER_NAME}"
-#export WORDPRESS_DB_PASSWORD= "W0rdpr3ss@p4ss"
-#export WORDPRESS_DB_NAME= "${DBNAME}"
