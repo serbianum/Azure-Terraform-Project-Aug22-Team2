@@ -29,7 +29,7 @@ variable "admin_password" {
 }
 
 variable "dbname"{
-  default = "db-wordpress"
+  default = "db-wordpress-team2-aug22"
 }
 
 variable "db_server_name" {
