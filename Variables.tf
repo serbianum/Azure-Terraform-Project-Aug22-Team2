@@ -25,7 +25,7 @@ variable "admin_username" {
 
 variable "admin_password" {
   description = "Default password for admin account"
-  default     = "W0rdpr3ss@p4ss"
+  default     = "thisIsAstrongPassword"
 }
 
 variable "dbname"{
@@ -42,4 +42,16 @@ variable "database_admin_login" {
 
 variable "database_admin_password" {
   default = "W0rdpr3ss@p4ss"
+}
+
+variable "cidr_block" {
+  description = "Provide CIDR Block"
+  type        = list
+  default     = ["10.0.0.0/16"]
+}
+
+variable "subnet_address"{
+  description = "Provide subnet address space" 
+  type        = list
+  default     = ["10.0.1.0/24"]
 }

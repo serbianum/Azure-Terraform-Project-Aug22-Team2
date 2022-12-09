@@ -1,6 +1,6 @@
 resource "azurerm_virtual_network" "wordpress" {
   name                = "wordpress-vnet"
-  address_space       = ["10.0.0.0/16"]
+  address_space       = var.cidr_block
   location            = var.location
   resource_group_name = azurerm_resource_group.wordpress.name
   tags                = var.tags
@@ -10,7 +10,7 @@ resource "azurerm_subnet" "wordpress" {
   name                 = "wordpress-subnet"
   resource_group_name  = azurerm_resource_group.wordpress.name
   virtual_network_name = azurerm_virtual_network.wordpress.name
-  address_prefixes     = ["10.0.2.0/24"]
+  address_prefixes     = var.subnet_address
 }
 
 resource "azurerm_public_ip" "wordpress" {

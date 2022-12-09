@@ -1,18 +1,18 @@
 # Team2 07/28/2022  @Devops
-Team members:
-Bercem Turk
-Alex Tsiasto
-Krystina  Liaudanskaya
-Saida Mukaramova
-Omurbek Orozaliev
-Cristina  Cotorobai
-Ghulam Alemi
-Andryy Malkevich
-Dinara Aidarova
-Serghei Nacai
-Richard Da Silva
-Shukurillo Iminov
-Sayyora
+Nura Alpieva
+Emrah
+Mihai Serbianu
+Adina Ergeshova
+Meerim Narova
+Sergei Kozlov
+Jarinat Kareem
+Kadyrzhan Kurbanaliev
+Elena Chervenko
+Gavhar Umarbaeva
+Mariya Ashurova
+Assel Agaidarova
+Aidana
+Dayan K
 
 
 Use Terraform to provision an Azure virtual machine scale set running Wordpress.
