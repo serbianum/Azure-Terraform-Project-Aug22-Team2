@@ -1,18 +1,18 @@
 # Team2 07/28/2022  @Devops
 Nura Alpieva <br />
 Emrah <br />
-Mihai Serbianu
-Adina Ergeshova
-Meerim Narova
-Sergei Kozlov
-Jarinat Kareem
-Kadyrzhan Kurbanaliev
-Elena Chervenko
-Gavhar Umarbaeva
-Mariya Ashurova
-Assel Agaidarova
-Aidana
-Dayan K
+Mihai Serbianu <br />
+Adina Ergeshova <br />
+Meerim Narova <br />
+Sergei Kozlov <br />
+Jarinat Kareem <br />
+Kadyrzhan Kurbanaliev <br />
+Elena Chervenko <br />
+Gavhar Umarbaeva <br />
+Mariya Ashurova <br />
+Assel Agaidarova <br />
+Aidana <br />
+Dayan K <br />
 
 
 Use Terraform to provision an Azure virtual machine scale set running Wordpress.
