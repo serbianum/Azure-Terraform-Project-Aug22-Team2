@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "azurerm" {
-        resource_group_name  = "cloud-shell-storage-westus"
-        storage_account_name = "wordpressbackend822"
+        resource_group_name  = "cloud-shell-storage-westus" #resource resource_group_name created manually 
+        storage_account_name = "wordpressbackend822"     # created manually
         container_name       = "tfstate"
         key                  = "enter key here"
     }
