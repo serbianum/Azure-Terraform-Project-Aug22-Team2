@@ -33,7 +33,7 @@ variable "dbname"{
 }
 
 variable "db_server_name" {
- default = "mysqlserver-wordpress"
+ default = "team2-db-server-wordpress"
 }
 
 variable "database_admin_login" {
