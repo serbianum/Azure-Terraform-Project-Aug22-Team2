@@ -9,5 +9,5 @@ resource "aws_route53_record" "www" {
   name    = "team2.cloudjourneys.net"
   type    = "A"
   ttl     = 300
-  records = [azurerm_lb.wordpress.id]
+  records = [azurerm_public_ip.wordpress.ip_address]
 }
