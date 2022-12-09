@@ -25,7 +25,7 @@ variable "admin_username" {
 
 variable "admin_password" {
   description = "Default password for admin account"
-  default     = "thisIsAstrongPassword"
+  default     = "26F4QXHVYbBjC$WH2HAc"
 }
 
 variable "dbname"{
@@ -41,7 +41,7 @@ variable "database_admin_login" {
 }
 
 variable "database_admin_password" {
-  default = "W0rdpr3ss@p4ss"
+  default = "26F4QXHVYbBjC$WH2HAc"
 }
 
 variable "cidr_block" {
