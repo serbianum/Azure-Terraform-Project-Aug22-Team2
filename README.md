@@ -1,5 +1,5 @@
 # Team2 07/28/2022  @Devops
-Nura Alpieva <br /> 
+Nurzhamal Alpieva <br /> 
 Mihai Serbianu <br /> 
 Adina Ergeshova <br /> 
 Meerim Narova <br /> 
