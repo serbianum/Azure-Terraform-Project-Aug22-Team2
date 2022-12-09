@@ -25,5 +25,5 @@ DB_SERVER_NAME="team2-db_server-wordpress"
 
 export WORDPRESS_DB_HOST= "${DB_SERVER_NAME}.mysql.database.azure.com"
 export WORDPRESS_DB_USER= "wordpress@${DB_SERVER_NAME}"
-export WORDPRESS_DB_PASSWORD= "W0rdpr3ss@p4ss"
+export WORDPRESS_DB_PASSWORD= "26F4QXHVYbBjC$WH2HAc"
 export WORDPRESS_DB_NAME= "${DBNAME}"
