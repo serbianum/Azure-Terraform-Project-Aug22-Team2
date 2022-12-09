@@ -1,6 +1,6 @@
 # Team2 07/28/2022  @Devops
-Nura Alpieva__
-Emrah__
+Nura Alpieva <br />
+Emrah <br />
 Mihai Serbianu
 Adina Ergeshova
 Meerim Narova
