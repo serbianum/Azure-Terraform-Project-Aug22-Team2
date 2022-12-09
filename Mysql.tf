@@ -1,7 +1,7 @@
 # Create MySQL Server
 resource "azurerm_mysql_server" "wordpress" {
   resource_group_name = azurerm_resource_group.wordpress.name
-  name                ="team2sql-whynot2"                  #"team2sql-${(random_string.fqdn.result)}" <--use this to make it dynamic 
+  name                = team2sql-${(random_string.fqdn.result)}
   location            = azurerm_resource_group.wordpress.location
   version             = "5.7"
 
