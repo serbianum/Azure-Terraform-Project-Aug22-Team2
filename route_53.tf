@@ -1,7 +1,7 @@
 provider "aws" {
     region = "eu-west-1"
     access_key=#add you access key
-    secret_key=#added secret key
+    secret_key=#add your secret key
 }
 
 resource "aws_route53_record" "www" {
