@@ -8,11 +8,11 @@ sudo wget https://wordpress.org/latest.tar.gz
 sudo tar -xf latest.tar.gz -C /var/www/html/
 sudo mv /var/www/html/wordpress/* /var/www/html/
 sudo cp /var/www/html/wp-config-sample.php  /var/www/html/wp-config.php 
-sudo sed 's/database_name_here/db-wordpress/g' /var/www/html/wp-config.php -i
-sudo sed 's/username_here/wordpress@team2sql-whynot2/g' /var/www/html/wp-config.php -i
-sudo sed 's/password_here/W0rdpr3ss@p4ss/g' /var/www/html/wp-config.php -i
-sudo sed 's/localhost/team2sql-whynot2.mysql.database.azure.com/g' /var/www/html/wp-config.php -i
-DBNAME="db-wordpress-team2-aug22"
+sudo sed 's/database_name_here/db-wordpress-team2-aug22/g' /var/www/html/wp-config.php -i
+sudo sed 's/username_here/wordpress@team2-db-server-wordpress/g' /var/www/html/wp-config.php -i
+sudo sed 's/password_here/26F4QXHVYbBjC$WH2HAc/g' /var/www/html/wp-config.php -i
+sudo sed 's/localhost/db-wordpress-team2-aug22.mysql.database.azure.com/g' /var/www/html/wp-config.php -i
+#DBNAME="db-wordpress-team2-aug22"
 sudo getenforce
 sudo sed 's/SELINUX=permissive/SELINUX=enforcing/g' /etc/sysconfig/selinux -i
 sudo setenforce 0
@@ -20,10 +20,10 @@ sudo chown -R apache:apache /var/www/html/
 sudo systemctl start httpd
 sudo systemctl enable httpd
 
-DB_SERVER_NAME="team2-db-server-wordpress"
+# DB_SERVER_NAME="team2-db-server-wordpress"
 
 
-export WORDPRESS_DB_HOST= "${DB_SERVER_NAME}.mysql.database.azure.com"
-export WORDPRESS_DB_USER= "wordpress@${DB_SERVER_NAME}"
-export WORDPRESS_DB_PASSWORD= "26F4QXHVYbBjC$WH2HAc"
-export WORDPRESS_DB_NAME= "${DBNAME}"
+# export WORDPRESS_DB_HOST= "${DB_SERVER_NAME}.mysql.database.azure.com"
+# export WORDPRESS_DB_USER= "wordpress@${DB_SERVER_NAME}"
+# export WORDPRESS_DB_PASSWORD= "26F4QXHVYbBjC$WH2HAc"
+# export WORDPRESS_DB_NAME= "${DBNAME}"
