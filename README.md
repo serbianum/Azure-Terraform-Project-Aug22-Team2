@@ -18,21 +18,19 @@ Use Terraform to build a three-tier application on Azure to host WordPress.
 
 ## How to use
 
-With Terraform and Azure CLI configured, you can run:
+This project is configured to run by default with a .tfstate Azure backend configuration. Make sure you create your Microsoft Storage account, Azure Blob and container and add the respective resources name in backend.tf file.
 
-### terraform init
+Otherwise comment out contents of backend.tf and run : 
+  make <i>region</i> [specify the prefered region]
 
-Initializes a working directory containing Terraform configuration files
+To destroy run :
+  make <i>region</i>-destroy
 
-### terraform plan
+## Route 53 Functionality
+  To enable AWS Route 53 Record, open route_53.tf uncomment the code and fill out required aws account details.
 
-Creates an execution plan
-
-### terraform apply
-
-Applies changes
-
-
+## Reusability 
+  This project is partially reusably. To make modifications to variable see <b>Variables.tf</b> file and set the desired values.
 
 # Github 
 
