@@ -70,35 +70,11 @@ Use resource provider "azurerm" features to create provider resource
 # Azure Provider source and version being used
 
 
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=2.91.0"
-    }
-  }
-}
-
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
 }
 
-# Create a resource group
-resource "azurerm_resource_group" "wordpress" {
-  name     = "wordpressResourceGroup"
-  location = var.location
-  tags     = var.tags
-}
-
-
-# Generates a random permutation of alphanumeric characters
-resource "random_string" "fqdn" {
-  length  = 6
-  special = false
-  upper   = false
-  number  = false
-}
 ```
 
 
@@ -107,7 +83,8 @@ In this project we used variables to make our code more dynamic. Create a file v
 ```
 variable "location" {
   description = "The location where resources will be created"
-  default     = "East US"
+  type        = string
+  default     = ""
 }
 
 variable "tags" {
@@ -115,7 +92,7 @@ variable "tags" {
   type        = map(string)
 
   default = {
-    environment = "Test"
+    environment = "DevOps"
   }
 }
 
@@ -131,7 +108,15 @@ variable "admin_username" {
 
 variable "admin_password" {
   description = "Default password for admin account"
-  default     = "W0rdpr3ss@p4ss"
+  default     = "26F4QXHVYbBjC$WH2HAc"
+}
+
+variable "dbname"{
+  default = "db-wordpress-team2-aug22"
+}
+
+variable "db_server_name" {
+ default = "team2-db-server-wordpress"
 }
 
 variable "database_admin_login" {
@@ -139,8 +124,22 @@ variable "database_admin_login" {
 }
 
 variable "database_admin_password" {
-  default = "w0rdpr3ss@p4ss"
+  default = "26F4QXHVYbBjC$WH2HAc"
 }
+
+variable "cidr_block" {
+  description = "Provide CIDR Block"
+  type        = list
+  default     = ["10.0.0.0/16"]
+}
+
+variable "subnet_address"{
+  description = "Provide subnet address space" 
+  type        = list
+  default     = ["10.0.1.0/24"]
+}
+
+
 ```
 
  
@@ -155,7 +154,7 @@ Create vnet.tf file in folder with .gitignore and README.md files
 ```
 resource "azurerm_virtual_network" "wordpress" {
   name                = "wordpress-vnet"
-  address_space       = ["10.0.0.0/16"]
+  address_space       = var.cidr_block
   location            = var.location
   resource_group_name = azurerm_resource_group.wordpress.name
   tags                = var.tags
@@ -165,7 +164,7 @@ resource "azurerm_subnet" "wordpress" {
   name                 = "wordpress-subnet"
   resource_group_name  = azurerm_resource_group.wordpress.name
   virtual_network_name = azurerm_virtual_network.wordpress.name
-  address_prefixes     = ["10.0.2.0/24"]
+  address_prefixes     = var.subnet_address
 }
 
 resource "azurerm_public_ip" "wordpress" {
@@ -176,6 +175,7 @@ resource "azurerm_public_ip" "wordpress" {
   domain_name_label   = random_string.fqdn.result
   tags                = var.tags
 }
+
 ```
 
 
@@ -227,17 +227,17 @@ resource "azurerm_lb_rule" "lbnatrule" {
   probe_id                       = azurerm_lb_probe.wordpress.id
 }
 
+
 resource "azurerm_linux_virtual_machine_scale_set" "wordpress" {
   name                            = "vmscaleset"
   location                        = var.location
   resource_group_name             = azurerm_resource_group.wordpress.name
-  sku                             = "Standard_DS1_v2"
-  instances                       = 2
+  sku                             = "Standard_D2S_v3"
+  instances                       = 1
   admin_username                  = var.admin_username
   admin_password                  = var.admin_password
   disable_password_authentication = false
   custom_data = filebase64("customdata.tpl")
-
  source_image_reference {
     publisher = "OpenLogic"
     offer     = "CentOS"
@@ -265,28 +265,8 @@ resource "azurerm_linux_virtual_machine_scale_set" "wordpress" {
   tags = var.tags
 }
 
-# data "template_file" "script" {
-#   # template = filebase64("/home/ec2-user/wordpress-azure-terraform-T3/wordpress.sh")
-#   template = file("wordpress.conf")
-# }
 
-# data "template_cloudinit_config" "config" {
-#   gzip          = true
-#   base64_encode = true
-
-#   part {
-#     # filename     = "wordpress.sh"
-#     filename     = "wordpress.conf"
-#     content_type = "text/cloud-config"
-#     content      = data.template_file.script.rendered
-#   }
-
-#   depends_on = [azurerm_mysql_server.wordpress]
-# }
 ```
- 
-
- 
 
  
 # DATABASE.TF  
@@ -299,7 +279,7 @@ Use resource https://registry.terraform.io/providers/hashicorp/azurerm/latest/do
 # Create MySQL Server
 resource "azurerm_mysql_server" "wordpress" {
   resource_group_name = azurerm_resource_group.wordpress.name
-  name                = "wordpress-mysql-server-${(random_string.fqdn.result)}"
+  name                = "team2-db-server-wordpress"   #"${var.db_server_name}-${(random_string.fqdn.result)}"
   location            = azurerm_resource_group.wordpress.location
   version             = "5.7"
 
@@ -320,7 +300,7 @@ resource "azurerm_mysql_server" "wordpress" {
 
 # Create MySql DataBase
 resource "azurerm_mysql_database" "wordpress" {
-  name                = "wordpress-mysql-db-${(random_string.fqdn.result)}"
+  name                = var.dbname
   resource_group_name = azurerm_resource_group.wordpress.name
   server_name         = azurerm_mysql_server.wordpress.name
   charset             = "utf8"
@@ -329,7 +309,7 @@ resource "azurerm_mysql_database" "wordpress" {
 
 # Config MySQL Server Firewall Rule
 resource "azurerm_mysql_firewall_rule" "wordpress" {
-  name                = "wordpress-mysql-firewall-rule-${(random_string.fqdn.result)}"
+  name                = "wordpress-mysql-firewall-rule"
   resource_group_name = azurerm_resource_group.wordpress.name
   server_name         = azurerm_mysql_server.wordpress.name
   start_ip_address    = azurerm_public_ip.wordpress.ip_address
@@ -365,19 +345,15 @@ sudo wget https://wordpress.org/latest.tar.gz
 sudo tar -xf latest.tar.gz -C /var/www/html/
 sudo mv /var/www/html/wordpress/* /var/www/html/
 sudo cp /var/www/html/wp-config-sample.php  /var/www/html/wp-config.php 
-sudo sed 's/database_name_here/db-wordpress/g' /var/www/html/wp-config.php -i
-sudo sed 's/username_here/wordpress@team2sql-whynot/g' /var/www/html/wp-config.php -i
-sudo sed 's/password_here/W0rdpr3ss@p4ss/g' /var/www/html/wp-config.php -i
-sudo sed 's/localhost/team2sql-whynot.mysql.database.azure.com/g' /var/www/html/wp-config.php -i
-DBNAME="db-wordpress"
+sudo sed 's/database_name_here/db-wordpress-team2-aug22/g' /var/www/html/wp-config.php -i
+sudo sed 's/username_here/wordpress@team2-db-server-wordpress/g' /var/www/html/wp-config.php -i
+sudo sed 's/password_here/26F4QXHVYbBjC$WH2HAc/g' /var/www/html/wp-config.php -i
+sudo sed 's/localhost/team2-db-server-wordpress.mysql.database.azure.com/g' /var/www/html/wp-config.php -i
 sudo getenforce
 sudo sed 's/SELINUX=permissive/SELINUX=enforcing/g' /etc/sysconfig/selinux -i
 sudo setenforce 0
 sudo chown -R apache:apache /var/www/html/
 sudo systemctl start httpd
 sudo systemctl enable httpd
+
 ```
-
- 
-
- 
