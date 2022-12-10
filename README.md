@@ -1,49 +1,48 @@
-# Team2 07/28/2022  @Devops
-Nura Alpieva <br /> 
-Mihai Serbianu <br /> 
-Adina Ergeshova <br /> 
-Meerim Narova <br /> 
-Jarinat Kareem <br /> 
-Kadyrzhan Kurbanaliev <br /> 
-Elena Chervenko <br /> 
-Gavhar Umarbaeva <br /> 
-Mariya Ashurova <br /> 
-Assel Agaidarova <br /> 
-Aidana Iyemberdiyeva <br /> 
-Dayann Yankov <br /> 
+# Terraform Project on Azure Team 2
+
+Use Terraform to build a three-tier application on Azure to host WordPress.
 
 
-Use Terraform to provision an Azure virtual machine scale set running Wordpress.
+## Prerequisites:
 
-
-## Prerequisites
-
-* [Terraform](https://www.terraform.io)
-* [Azure subscription](https://azure.microsoft.com/en-us/free)
+* [Terraform](https://www.terraform.io) 
+* Azure subscription: If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/en-us/free)
 * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 
 
 * Login to your Azure Cloud Provider  
-* Select Billing Account under hamburger menu 
-* Create a Billing Account For ex: in this project we used Omar Acoount billing
+* Select Cost Management/ Billing Account under the hamburger menu 
+* Create a Billing Account
 
 
 
 ## How to use
 
-With Terraform and Azure CLI properly configured, you can run:
+With Terraform and Azure CLI configured, you can run:
 
-### `terraform init`
+### terraform init
 
-Prepare your working directory.
+Initializes a working directory containing Terraform configuration files
 
-### `terraform plan`
+### terraform plan
 
-Generate an execution plan.
+Creates an execution plan
 
-### `terraform apply`
+### terraform apply
 
-Apply changes to Azure cloud.
+Applies changes
+
+
+
+# Github 
+
+Navigate to Github and create a repository for your project, make sure to add .gitignore and README.md files 
+
+This is group project, so add your collaborators into your project with their github names 
+
+After adding them as collaborator, users will be able to add their SSH public keys to github successfully 
+
+Users will be able to clone the project into their locals with git clone command
 
 
 
