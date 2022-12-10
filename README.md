@@ -18,7 +18,7 @@ Use Terraform to build a three-tier application on Azure to host WordPress.
 
 ## How to use
 
-This project is configured to run by default with a .tfstate Azure backend configuration. Make sure you create your Microsoft Storage account, Azure Blob and container and add the respective resources name in backend.tf file.
+This project is configured to run by default with a .tfstate Azure backend configuration. Make sure you create your Microsoft Storage account, Azure Blob, Container and add the respective resources name in backend.tf file.
 
 Otherwise comment out contents of backend.tf and run : 
   make <i>region</i> [specify the prefered region]
