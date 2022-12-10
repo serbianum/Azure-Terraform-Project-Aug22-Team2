@@ -29,18 +29,22 @@ variable "admin_password" {
 }
 
 variable "dbname"{
+  description = "Enter Desired Database name"
   default = "db-wordpress-team2-aug22"
 }
 
 variable "db_server_name" {
+ description = "Enter Server Name"
  default = "team2-db-server-wordpress"
 }
 
 variable "database_admin_login" {
+  description = "Enter database admin account login"
   default = "wordpress"
 }
 
 variable "database_admin_password" {
+  description = "Enter Database admin password"
   default = "26F4QXHVYbBjC$WH2HAc"
 }
 
@@ -54,4 +58,9 @@ variable "subnet_address"{
   description = "Provide subnet address space" 
   type        = list
   default     = ["10.0.1.0/24"]
+}
+
+variable "sec_group" {
+  description = "Enter Security Group name"
+  default     = "wordpress_sec_group"
 }
