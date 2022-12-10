@@ -32,17 +32,6 @@ To destroy run :
 ## Reusability 
   This project is partially reusably. To make modifications to variable see <b>Variables.tf</b> file and set the desired values.
 
-# Github 
-
-Navigate to Github and create a repository for your project, make sure to add .gitignore and README.md files 
-
-This is group project, so add your collaborators into your project with their github names 
-
-After adding them as collaborator, users will be able to add their SSH public keys to github successfully 
-
-Users will be able to clone the project into their locals with git clone command
-
-
 
 # Github 
 
